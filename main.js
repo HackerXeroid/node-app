@@ -117,17 +117,18 @@ const errorHtml = fs.readFileSync("error.html", "utf-8");
 
 const PORT = 3000;
 const server = http.createServer((req, res) => {
-  res.writeHead(res.statusCode, { "Content-Type": "text/html" });
-
   const parsedUrl = url.parse(req.url, true);
   switch (parsedUrl.pathname) {
     case "/":
+      res.writeHead(200, { "Content-Type": "text/html" });
       res.end(indexHtml);
       break;
     case "/login":
+      res.writeHead(200, { "Content-Type": "text/html" });
       res.end(htmlDocument("Hello from Login Page"));
       break;
     default:
+      res.writeHead(400, { "Content-Type": "text/html" });
       res.end(errorHtml);
       break;
   }
